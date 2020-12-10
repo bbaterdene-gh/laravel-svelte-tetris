@@ -90,10 +90,6 @@
     "footer footer footer";
   }
 
-  #tetris {
-    grid-area: main;
-    align-self: center;
-  }
   #sidebar-right-top {
     grid-area: sidebar-right-top;
     justify-self: start;

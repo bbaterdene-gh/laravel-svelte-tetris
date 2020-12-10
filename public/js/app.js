@@ -40752,48 +40752,18 @@ function add_css() {
 
 
 function create_if_block(ctx) {
-  var div2;
   var div1;
-  var h1;
-  var t1;
-  var div0;
-  var a;
-  var mounted;
-  var dispose;
   return {
     c: function c() {
-      div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
-      h1.textContent = "Тоглоом дууслаа";
-      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      a = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("a");
-      a.textContent = "Оноог хадгалан дахин эхлүүлэх";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(h1, "color", "#c02222");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "href", "#");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "class", "btn-flat-border svelte-147pa45");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "modal svelte-147pa45");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "modal-wrapper svelte-147pa45");
+      div1.innerHTML = "<div class=\"modal svelte-147pa45\"><h1 style=\"color: #c02222;\">\u0422\u043E\u0433\u043B\u043E\u043E\u043C \u0434\u0443\u0443\u0441\u043B\u0430\u0430</h1> \n      <form action=\"/point\" method=\"post\"><button type=\"submit\" class=\"btn-flat-border svelte-147pa45\">\u041E\u043D\u043E\u043E\u0433 \u0445\u0430\u0434\u0433\u0430\u043B\u0430\u043D \u0434\u0430\u0445\u0438\u043D \u044D\u0445\u043B\u04AF\u04AF\u043B\u044D\u0445</button></form></div>";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "modal-wrapper svelte-147pa45");
     },
     m: function m(target, anchor) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div2, anchor);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, div1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, h1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, div0);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, a);
-
-      if (!mounted) {
-        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(a, "click", location.reload);
-        mounted = true;
-      }
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div1, anchor);
     },
-    p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
     d: function d(detaching) {
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div2);
-      mounted = false;
-      dispose();
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div1);
     }
   };
 }
@@ -40819,9 +40789,7 @@ function create_fragment(ctx) {
       if (
       /*shown*/
       ctx[0]) {
-        if (if_block) {
-          if_block.p(ctx, dirty);
-        } else {
+        if (if_block) {} else {
           if_block = create_if_block(ctx);
           if_block.c();
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -40939,8 +40907,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function add_css() {
   var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
-  style.id = "svelte-1k8sasx-style";
-  style.textContent = "#Play.svelte-1k8sasx.svelte-1k8sasx{display:grid;grid-template-areas:\"header header header\"\n    \"sidebar-left-top main sidebar-right-top\"\n    \"sidebar-left-down main sidebar-right-down\"\n    \"footer footer footer\"}#sidebar-right-top.svelte-1k8sasx.svelte-1k8sasx{grid-area:sidebar-right-top;justify-self:start;text-align:center}#point.svelte-1k8sasx.svelte-1k8sasx{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#point.svelte-1k8sasx div.svelte-1k8sasx{margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#sidebar-left-top.svelte-1k8sasx.svelte-1k8sasx{grid-area:sidebar-left-top;justify-self:end;text-align:center}#record.svelte-1k8sasx.svelte-1k8sasx{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#record.svelte-1k8sasx div.svelte-1k8sasx{margin:0;position:absolute;width:100%;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#description.svelte-1k8sasx.svelte-1k8sasx{margin-top:20px;border:10px solid #504545;height:200px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#description.svelte-1k8sasx div.svelte-1k8sasx{margin:auto;width:100%}h1.svelte-1k8sasx.svelte-1k8sasx{grid-area:header;color:#ffffff}.reload.svelte-1k8sasx.svelte-1k8sasx{position:relative;width:25px;height:25px;border:2.5px solid;border-right-color:transparent;border-radius:100%;box-sizing:border-box;color:#94a4bd}.reload.svelte-1k8sasx.svelte-1k8sasx:before{position:absolute;top:4.5px;right:-2.5px;content:\"\";height:50%;border:5px solid transparent;border-top:7.5px solid;background:transparent;transform-origin:left top;transform:rotate(-40deg);box-sizing:border-box}#control.svelte-1k8sasx.svelte-1k8sasx{padding-top:20px;color:#ffffff}";
+  style.id = "svelte-1nwheat-style";
+  style.textContent = "#Play.svelte-1nwheat.svelte-1nwheat{display:grid;grid-template-areas:\"header header header\"\n    \"sidebar-left-top main sidebar-right-top\"\n    \"sidebar-left-down main sidebar-right-down\"\n    \"footer footer footer\"}#sidebar-right-top.svelte-1nwheat.svelte-1nwheat{grid-area:sidebar-right-top;justify-self:start;text-align:center}#point.svelte-1nwheat.svelte-1nwheat{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#point.svelte-1nwheat div.svelte-1nwheat{margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#sidebar-left-top.svelte-1nwheat.svelte-1nwheat{grid-area:sidebar-left-top;justify-self:end;text-align:center}#record.svelte-1nwheat.svelte-1nwheat{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#record.svelte-1nwheat div.svelte-1nwheat{margin:0;position:absolute;width:100%;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#description.svelte-1nwheat.svelte-1nwheat{margin-top:20px;border:10px solid #504545;height:200px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#description.svelte-1nwheat div.svelte-1nwheat{margin:auto;width:100%}h1.svelte-1nwheat.svelte-1nwheat{grid-area:header;color:#ffffff}.reload.svelte-1nwheat.svelte-1nwheat{position:relative;width:25px;height:25px;border:2.5px solid;border-right-color:transparent;border-radius:100%;box-sizing:border-box;color:#94a4bd}.reload.svelte-1nwheat.svelte-1nwheat:before{position:absolute;top:4.5px;right:-2.5px;content:\"\";height:50%;border:5px solid transparent;border-top:7.5px solid;background:transparent;transform-origin:left top;transform:rotate(-40deg);box-sizing:border-box}#control.svelte-1nwheat.svelte-1nwheat{padding-top:20px;color:#ffffff}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
 }
 
@@ -41001,7 +40969,7 @@ function create_fragment(ctx) {
       h1.textContent = "Тетрис";
       t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       div11 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      div11.innerHTML = "<div id=\"record\" class=\"svelte-1k8sasx\"><div class=\"svelte-1k8sasx\">\u041E\u0434\u043E\u043E\u0433\u0438\u0439\u043D \u0440\u0435\u043A\u043E\u0440\u0434: 200</div></div> \n\n    <div id=\"description\" class=\"svelte-1k8sasx\"><div class=\"svelte-1k8sasx\">\u0422\u043E\u0433\u043B\u043E\u043E\u043C\u044B\u043D \u0437\u0430\u0430\u0432\u0430\u0440</div> \n      <div class=\"svelte-1k8sasx\">\xA0</div> \n      <div class=\"svelte-1k8sasx\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Space: \u0428\u0443\u0443\u0434 \u0431\u0443\u0443\u043B\u0433\u0430\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Up: \u042D\u0440\u0433\u04AF\u04AF\u043B\u044D\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Left: \u0417\u04AF\u04AF\u043D</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Down: \u0414\u043E\u043E\u0448</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Right: \u0411\u0430\u0440\u0443\u0443\u043D</div></div></div>";
+      div11.innerHTML = "<div id=\"record\" class=\"svelte-1nwheat\"><div class=\"svelte-1nwheat\">\u041E\u0434\u043E\u043E\u0433\u0438\u0439\u043D \u0440\u0435\u043A\u043E\u0440\u0434: 200</div></div> \n\n    <div id=\"description\" class=\"svelte-1nwheat\"><div class=\"svelte-1nwheat\">\u0422\u043E\u0433\u043B\u043E\u043E\u043C\u044B\u043D \u0437\u0430\u0430\u0432\u0430\u0440</div> \n      <div class=\"svelte-1nwheat\">\xA0</div> \n      <div class=\"svelte-1nwheat\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">Space: \u0428\u0443\u0443\u0434 \u0431\u0443\u0443\u043B\u0433\u0430\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">Arrow Up: \u042D\u0440\u0433\u04AF\u04AF\u043B\u044D\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">Arrow Left: \u0417\u04AF\u04AF\u043D</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">Arrow Down: \u0414\u043E\u043E\u0448</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">Arrow Right: \u0411\u0430\u0440\u0443\u0443\u043D</div></div></div>";
       t17 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(cellcontainer.$$.fragment);
       t18 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
@@ -41014,24 +40982,24 @@ function create_fragment(ctx) {
       ctx[0]);
       t21 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       div21 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      div21.innerHTML = "<div class=\"svelte-1k8sasx\">\u041E\u043D\u043E\u043E\u043D\u044B \u0434\u04AF\u0440\u044D\u043C</div> \n      <div class=\"svelte-1k8sasx\">\xA0</div> \n      <div class=\"svelte-1k8sasx\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">1 \u0448\u0443\u0433\u0430\u043C: 40 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">2 \u0448\u0443\u0433\u0430\u043C: 100 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">3 \u0448\u0443\u0433\u0430\u043C: 300 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">4+ \u0448\u0443\u0433\u0430\u043C: 1200 \u043E\u043D\u043E\u043E</div></div>";
+      div21.innerHTML = "<div class=\"svelte-1nwheat\">\u041E\u043D\u043E\u043E\u043D\u044B \u0434\u04AF\u0440\u044D\u043C</div> \n      <div class=\"svelte-1nwheat\">\xA0</div> \n      <div class=\"svelte-1nwheat\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">1 \u0448\u0443\u0433\u0430\u043C: 40 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">2 \u0448\u0443\u0433\u0430\u043C: 100 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">3 \u0448\u0443\u0433\u0430\u043C: 300 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1nwheat\">4+ \u0448\u0443\u0433\u0430\u043C: 1200 \u043E\u043D\u043E\u043E</div></div>";
       t33 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       div25 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      div25.innerHTML = "<div style=\"display: inline-block\"><div class=\"reload blue svelte-1k8sasx\" onclick=\"window.location.reload();\" style=\"float: left;\"></div> \n        <div style=\"float: left;\">\xA0\xA0\u0414\u0430\u0445\u0438\u043D \u044D\u0445\u043B\u04AF\u04AF\u043B\u044D\u0445</div></div>";
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h1, "class", "svelte-1k8sasx");
+      div25.innerHTML = "<div style=\"display: inline-block\"><div class=\"reload blue svelte-1nwheat\" onclick=\"window.location.reload();\" style=\"float: left;\"></div> \n        <div style=\"float: left;\">\xA0\xA0\u0414\u0430\u0445\u0438\u043D \u044D\u0445\u043B\u04AF\u04AF\u043B\u044D\u0445</div></div>";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h1, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div11, "id", "sidebar-left-top");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div11, "class", "svelte-1k8sasx");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div12, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div11, "class", "svelte-1nwheat");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div12, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "id", "point");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div21, "id", "description");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div21, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div21, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div25, "id", "control");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div25, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div25, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div26, "id", "sidebar-right-top");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div26, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div26, "class", "svelte-1nwheat");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div27, "id", "Play");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div27, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div27, "class", "svelte-1nwheat");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div27, anchor);
@@ -41159,7 +41127,7 @@ var Play = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, Play);
 
     _this = _super.call(this);
-    if (!document.getElementById("svelte-1k8sasx-style")) add_css();
+    if (!document.getElementById("svelte-1nwheat-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
     return _this;
   }

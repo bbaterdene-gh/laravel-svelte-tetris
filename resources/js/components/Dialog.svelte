@@ -47,9 +47,9 @@
   <div class="modal-wrapper">
     <div class="modal">
       <h1 style="color: #c02222;">Тоглоом дууслаа</h1>
-      <div>
-        <a href="#" class="btn-flat-border" on:click={location.reload}>Оноог хадгалан дахин эхлүүлэх</a>
-      </div>
+      <form action="/point" method="post">
+        <button type="submit" class="btn-flat-border">Оноог хадгалан дахин эхлүүлэх</button>
+      </form>
     </div>
   </div>
 {/if}

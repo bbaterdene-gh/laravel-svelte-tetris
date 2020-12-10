@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Point;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = auth()->user();
+    $userRecord = Point::where('user_email', $user->email)->max('point');
+    $allRecord = Point::all()->max('point');
+    return view('welcome', ["userRecord"=>$userRecord, "allRecord"=>$allRecord]);
 });
 
 Auth::routes();

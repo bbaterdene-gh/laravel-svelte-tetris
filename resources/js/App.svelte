@@ -1,9 +1,11 @@
 <script>
+  export let userRecord;
+  export let allRecord;
 	import Play from './pages/Play.svelte'
 </script>
 
 <main>
-	<Play />
+<Play userRecord={userRecord} allRecord={allRecord}/>
 </main>
 
 <style>

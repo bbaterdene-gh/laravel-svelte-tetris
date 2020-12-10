@@ -10,7 +10,11 @@ require('./bootstrap');
 import App from "./App.svelte";
 
 const app = new App({
-  target: document.getElementById("svelte-app")
+  target: document.getElementById("svelte-app"),
+  props: {
+    userRecord: userRecord,
+    allRecord: allRecord,
+  }
 });
 
 window.app = app;

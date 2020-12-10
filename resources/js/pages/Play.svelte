@@ -1,5 +1,7 @@
 <script>
   import CellContainer from "../components/CellContainer.svelte";
+  export let userRecord;
+  export let allRecord;
   let width = 10;
   let point = 0;
   const jTetromino = {
@@ -127,15 +129,6 @@
     position: relative;
   }
 
-  #record div{
-    margin: 0;
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
 
   #description {
     margin-top: 20px;
@@ -192,7 +185,8 @@
   <h1>Тетрис</h1>
   <div id="sidebar-left-top">
     <div id="record">
-      <div>Одоогийн рекорд: 200</div>
+      <div style="margin: 10px">Таны рекорд: {userRecord}</div>
+      <div>Бүх тоглогчдын рекорд: {allRecord}</div>
     </div>
 
     <div id="description">

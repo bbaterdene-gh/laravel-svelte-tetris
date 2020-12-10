@@ -6,6 +6,9 @@
   export function hide() {
     shown = false;
   }
+  function save(){
+    document.getElementById("saveAndReplay").submit();
+  }
 </script>
 
 <style>
@@ -47,8 +50,8 @@
   <div class="modal-wrapper">
     <div class="modal">
       <h1 style="color: #c02222;">Тоглоом дууслаа</h1>
-      <form action="/point" method="post">
-        <button type="submit" class="btn-flat-border">Оноог хадгалан дахин эхлүүлэх</button>
+      <form action="/point" method="post" id="saveAndReplay">
+        <a class="btn-flat-border" on:click={save}>Оноог хадгалан дахин эхлүүлэх</a>
       </form>
     </div>
   </div>

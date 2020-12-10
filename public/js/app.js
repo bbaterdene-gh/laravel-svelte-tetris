@@ -39699,7 +39699,7 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _pages_Play_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Play.svelte */ "./resources/js/pages/Play.svelte");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39722,30 +39722,44 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-7w6fh4-style";
+  style.textContent = "main.svelte-7w6fh4{text-align:center;padding:1em;max-width:240px;margin:0 auto}body{background-image:url('./img/tetris-bg-1.jpg');background-repeat:no-repeat;background-position:center;background-size:cover}@media(min-width: 640px){main.svelte-7w6fh4{max-width:none}}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+}
+
 function create_fragment(ctx) {
   var main;
+  var play;
+  var current;
+  play = new _pages_Play_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({});
   return {
     c: function c() {
       main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("main");
-      main.innerHTML = "<div class=\"container\"><div class=\"row justify-content-center\"><div class=\"col-md-8\"><div class=\"card\"><div class=\"card-header\">Example Component</div> \n\t\t\t\t\t<div class=\"card-body\">I&#39;m an example compt.</div></div></div></div></div>";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(play.$$.fragment);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "class", "svelte-7w6fh4");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(play, main, null);
+      current = true;
     },
     p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-    i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-    o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    i: function i(local) {
+      if (current) return;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(play.$$.fragment, local);
+      current = true;
+    },
+    o: function o(local) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(play.$$.fragment, local);
+      current = false;
+    },
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(play);
     }
   };
-}
-
-function instance($$self) {
-  Object(svelte__WEBPACK_IMPORTED_MODULE_1__["onMount"])(function () {
-    console.log("the component has mounted");
-  });
-  return [];
 }
 
 var App = /*#__PURE__*/function (_SvelteComponent) {
@@ -39759,7 +39773,8 @@ var App = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, App);
 
     _this = _super.call(this);
-    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
+    if (!document.getElementById("svelte-7w6fh4-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, null, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
     return _this;
   }
 
@@ -39838,6 +39853,1321 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/Cell.svelte":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Cell.svelte ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* resources\js\components\Cell.svelte generated by Svelte v3.31.0 */
+
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-1yqytge-style";
+  style.textContent = "div.svelte-1yqytge{box-sizing:border-box;border:1px solid #2D2A2A;background-color:#131010}.jTetromino.svelte-1yqytge{background-color:#0a3555}.lTetromino.svelte-1yqytge{background-color:#ec891f}.sTetromino.svelte-1yqytge{background-color:#068206}.zTetromino.svelte-1yqytge{background-color:#d91919}.tTetromino.svelte-1yqytge{background-color:#a638e3}.oTetromino.svelte-1yqytge{background-color:#ecec1f}.iTetromino.svelte-1yqytge{background-color:#2890dd}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+}
+
+function create_fragment(ctx) {
+  var div;
+  var div_id_value;
+  return {
+    c: function c() {
+      div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
+      /*cellWidth*/
+      ctx[0] + "px");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
+      /*cellHeight*/
+      ctx[1] + "px");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "cell svelte-1yqytge");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "id", div_id_value = "" + (
+      /*cellState*/
+      ctx[2].id + "-th-cell"));
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "lTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.lTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "jTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.jTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "sTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.sTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "zTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.zTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "tTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.tTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "oTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.oTetromino);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "iTetromino",
+      /*cellState*/
+      ctx[2].tetrominoType.iTetromino);
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
+    },
+    p: function p(ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
+      if (dirty &
+      /*cellWidth*/
+      1) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
+        /*cellWidth*/
+        ctx[0] + "px");
+      }
+
+      if (dirty &
+      /*cellHeight*/
+      2) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
+        /*cellHeight*/
+        ctx[1] + "px");
+      }
+
+      if (dirty &
+      /*cellState*/
+      4 && div_id_value !== (div_id_value = "" + (
+      /*cellState*/
+      ctx[2].id + "-th-cell"))) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "id", div_id_value);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "lTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.lTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "jTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.jTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "sTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.sTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "zTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.zTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "tTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.tTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "oTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.oTetromino);
+      }
+
+      if (dirty &
+      /*cellState*/
+      4) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["toggle_class"])(div, "iTetromino",
+        /*cellState*/
+        ctx[2].tetrominoType.iTetromino);
+      }
+    },
+    i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+    }
+  };
+}
+
+function instance($$self, $$props, $$invalidate) {
+  var cellWidth = $$props.cellWidth;
+  var cellHeight = $$props.cellHeight;
+  var cellState = $$props.cellState;
+
+  $$self.$$set = function ($$props) {
+    if ("cellWidth" in $$props) $$invalidate(0, cellWidth = $$props.cellWidth);
+    if ("cellHeight" in $$props) $$invalidate(1, cellHeight = $$props.cellHeight);
+    if ("cellState" in $$props) $$invalidate(2, cellState = $$props.cellState);
+  };
+
+  return [cellWidth, cellHeight, cellState];
+}
+
+var Cell = /*#__PURE__*/function (_SvelteComponent) {
+  _inherits(Cell, _SvelteComponent);
+
+  var _super = _createSuper(Cell);
+
+  function Cell(options) {
+    var _this;
+
+    _classCallCheck(this, Cell);
+
+    _this = _super.call(this);
+    if (!document.getElementById("svelte-1yqytge-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
+      cellWidth: 0,
+      cellHeight: 1,
+      cellState: 2
+    });
+    return _this;
+  }
+
+  return Cell;
+}(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Cell);
+
+/***/ }),
+
+/***/ "./resources/js/components/CellContainer.svelte":
+/*!******************************************************!*\
+  !*** ./resources/js/components/CellContainer.svelte ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _Cell_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cell.svelte */ "./resources/js/components/Cell.svelte");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _Dialog_svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Dialog.svelte */ "./resources/js/components/Dialog.svelte");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* resources\js\components\CellContainer.svelte generated by Svelte v3.31.0 */
+
+var window_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_0__["globals"].window;
+
+
+
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-146i7hn-style";
+  style.textContent = ".CellContainer.svelte-146i7hn{display:flex;display:flex;flex-wrap:wrap;margin:auto;border:10px solid #504545;box-shadow:0 3px 6px rgba(0, 0, 0, 0.25);border-radius:9px}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+}
+
+function get_each_context(ctx, list, i) {
+  var child_ctx = ctx.slice();
+  child_ctx[21] = list[i];
+  return child_ctx;
+} // (196:2) {#each cells as cell (cell.id)}
+
+
+function create_each_block(key_1, ctx) {
+  var first;
+  var cell;
+  var current;
+  cell = new _Cell_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    props: {
+      cellWidth:
+      /*cellWidth*/
+      ctx[2],
+      cellHeight:
+      /*cellHeight*/
+      ctx[3],
+      cellState:
+      /*cell*/
+      ctx[21]
+    }
+  });
+  return {
+    key: key_1,
+    first: null,
+    c: function c() {
+      first = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["empty"])();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(cell.$$.fragment);
+      this.first = first;
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, first, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(cell, target, anchor);
+      current = true;
+    },
+    p: function p(ctx, dirty) {
+      var cell_changes = {};
+      if (dirty &
+      /*cellWidth*/
+      4) cell_changes.cellWidth =
+      /*cellWidth*/
+      ctx[2];
+      if (dirty &
+      /*cellHeight*/
+      8) cell_changes.cellHeight =
+      /*cellHeight*/
+      ctx[3];
+      if (dirty &
+      /*cells*/
+      16) cell_changes.cellState =
+      /*cell*/
+      ctx[21];
+      cell.$set(cell_changes);
+    },
+    i: function i(local) {
+      if (current) return;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(cell.$$.fragment, local);
+      current = true;
+    },
+    o: function o(local) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(cell.$$.fragment, local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(first);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(cell, detaching);
+    }
+  };
+}
+
+function create_fragment(ctx) {
+  var div;
+  var each_blocks = [];
+  var each_1_lookup = new Map();
+  var t;
+  var dialog_1;
+  var current;
+  var mounted;
+  var dispose;
+  var each_value =
+  /*cells*/
+  ctx[4];
+
+  var get_key = function get_key(ctx) {
+    return (
+      /*cell*/
+      ctx[21].id
+    );
+  };
+
+  for (var i = 0; i < each_value.length; i += 1) {
+    var child_ctx = get_each_context(ctx, each_value, i);
+    var key = get_key(child_ctx);
+    each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+  }
+
+  var dialog_1_props = {};
+  dialog_1 = new _Dialog_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({
+    props: dialog_1_props
+  });
+  /*dialog_1_binding*/
+
+  ctx[13](dialog_1);
+  return {
+    c: function c() {
+      div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+
+      for (var _i = 0; _i < each_blocks.length; _i += 1) {
+        each_blocks[_i].c();
+      }
+
+      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(dialog_1.$$.fragment);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "CellContainer svelte-146i7hn");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
+      /*cellWidth*/
+      ctx[2] *
+      /*width*/
+      ctx[0] + "px");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
+      /*cellHeight*/
+      ctx[3] *
+      /*height*/
+      ctx[1] + "px");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "id", "tetris");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
+
+      for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
+        each_blocks[_i2].m(div, null);
+      }
+
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(dialog_1, target, anchor);
+      current = true;
+
+      if (!mounted) {
+        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(window_1, "keydown",
+        /*handleKey*/
+        ctx[6]);
+        mounted = true;
+      }
+    },
+    p: function p(ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
+      if (dirty &
+      /*cellWidth, cellHeight, cells*/
+      28) {
+        var _each_value =
+        /*cells*/
+        ctx[4];
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
+        each_blocks = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["update_keyed_each"])(each_blocks, dirty, get_key, 1, ctx, _each_value, each_1_lookup, div, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["outro_and_destroy_block"], create_each_block, null, get_each_context);
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
+      }
+
+      if (!current || dirty &
+      /*cellWidth, width*/
+      5) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
+        /*cellWidth*/
+        ctx[2] *
+        /*width*/
+        ctx[0] + "px");
+      }
+
+      if (!current || dirty &
+      /*cellHeight, height*/
+      10) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
+        /*cellHeight*/
+        ctx[3] *
+        /*height*/
+        ctx[1] + "px");
+      }
+
+      var dialog_1_changes = {};
+
+      if (dirty &
+      /*$$scope*/
+      16777216) {
+        dialog_1_changes.$$scope = {
+          dirty: dirty,
+          ctx: ctx
+        };
+      }
+
+      dialog_1.$set(dialog_1_changes);
+    },
+    i: function i(local) {
+      if (current) return;
+
+      for (var _i3 = 0; _i3 < each_value.length; _i3 += 1) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(each_blocks[_i3]);
+      }
+
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(dialog_1.$$.fragment, local);
+      current = true;
+    },
+    o: function o(local) {
+      for (var _i4 = 0; _i4 < each_blocks.length; _i4 += 1) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(each_blocks[_i4]);
+      }
+
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(dialog_1.$$.fragment, local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+
+      for (var _i5 = 0; _i5 < each_blocks.length; _i5 += 1) {
+        each_blocks[_i5].d();
+      }
+
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
+      /*dialog_1_binding*/
+
+      ctx[13](null);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(dialog_1, detaching);
+      mounted = false;
+      dispose();
+    }
+  };
+}
+
+function instance($$self, $$props, $$invalidate) {
+  var dialog;
+  var point = $$props.point;
+  var prevPoint = 0;
+  var dispatch = Object(svelte__WEBPACK_IMPORTED_MODULE_2__["createEventDispatcher"])();
+  var _$$props$width = $$props.width,
+      width = _$$props$width === void 0 ? 10 : _$$props$width;
+  var _$$props$height = $$props.height,
+      height = _$$props$height === void 0 ? 20 : _$$props$height;
+  var _$$props$cellWidth = $$props.cellWidth,
+      cellWidth = _$$props$cellWidth === void 0 ? 25 : _$$props$cellWidth;
+  var _$$props$cellHeight = $$props.cellHeight,
+      cellHeight = _$$props$cellHeight === void 0 ? 25 : _$$props$cellHeight;
+  var currentTetromino = $$props.currentTetromino;
+  var cells = [];
+  var currentPosition = 4;
+  var currentRotation = 0;
+  var prevRotation = currentRotation;
+  var prevPosition = currentPosition;
+
+  _toConsumableArray(Array(height * width).keys()).forEach(function (element) {
+    $$invalidate(4, cells[element] = {
+      id: element,
+      tetrominoType: {
+        jTetromino: false,
+        lTetromino: false,
+        sTetromino: false,
+        zTetromino: false,
+        tTetromino: false,
+        oTetromino: false,
+        iTetromino: false
+      },
+      drawable: true
+    }, cells);
+  });
+
+  function handleKey(e) {
+    var isLeft = currentTetromino.rotation[currentRotation].some(function (index) {
+      return (currentPosition + index) % width === 0;
+    });
+    var isRight = currentTetromino.rotation[currentRotation].some(function (index) {
+      return (currentPosition + index + 1) % width === 0;
+    });
+
+    switch (e.keyCode) {
+      case 37:
+        // left
+        if (!isLeft) {
+          if (currentTetromino.rotation[currentRotation].every(function (index) {
+            return cells[currentPosition - 1 + index].drawable === true;
+          })) {
+            reset();
+            $$invalidate(12, prevPosition = currentPosition);
+            $$invalidate(9, currentPosition -= 1);
+          }
+        }
+
+        break;
+
+      case 38:
+        // rotate
+        reset();
+
+        if (isLeft) {
+          $$invalidate(9, currentPosition += 1);
+        } else if (isRight) {
+          $$invalidate(9, currentPosition -= 2);
+        }
+
+        $$invalidate(11, prevRotation = currentRotation);
+        $$invalidate(10, currentRotation++, currentRotation);
+        if (currentRotation === 4) $$invalidate(10, currentRotation = 0);
+        break;
+
+      case 39:
+        // right
+        if (!isRight) {
+          if (currentTetromino.rotation[currentRotation].every(function (index) {
+            return cells[currentPosition + 1 + index].drawable === true;
+          })) {
+            reset();
+            $$invalidate(12, prevPosition = currentPosition);
+            $$invalidate(9, currentPosition += 1);
+          }
+        }
+
+        break;
+
+      case 40:
+        // down
+        reset();
+        $$invalidate(12, prevPosition = currentPosition);
+        $$invalidate(9, currentPosition += width);
+        freeze();
+        break;
+
+      case 32:
+        //space
+        while (!freeze()) {
+          reset();
+          $$invalidate(12, prevPosition = currentPosition);
+          $$invalidate(9, currentPosition += width);
+        }
+
+        break;
+    }
+  }
+
+  function freeze() {
+    var isBottom = currentTetromino.rotation[currentRotation].some(function (index) {
+      return currentPosition + index >= width * height - width;
+    });
+
+    if (currentTetromino.rotation[currentRotation].some(function (index) {
+      return cells[currentPosition + index + width].drawable === false || isBottom;
+    })) {
+      currentTetromino.rotation[currentRotation].forEach(function (index) {
+        $$invalidate(4, cells[currentPosition + index].drawable = false, cells);
+        $$invalidate(4, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
+      }); //start a new tetromino falling
+
+      addPoint();
+      reset();
+      gameover();
+      dispatch("newTetromino");
+      return true;
+    }
+
+    return false;
+  }
+
+  function addPoint() {
+    prevPoint = point;
+    var tmpPoint = point;
+
+    for (var i = 0; i < 199; i += width) {
+      var row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
+
+      if (row.every(function (index) {
+        return cells[index].drawable === false;
+      })) {
+        tmpPoint += 40;
+        row.forEach(function (index) {
+          $$invalidate(4, cells[index].drawable = true, cells);
+
+          for (var _i6 = 0, _Object$entries = Object.entries(cells[index].tetrominoType); _i6 < _Object$entries.length; _i6++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i6], 2),
+                key = _Object$entries$_i[0],
+                _ = _Object$entries$_i[1];
+
+            $$invalidate(4, cells[index].tetrominoType[key] = false, cells);
+          }
+        });
+        var removedCells = cells.splice(i, width);
+        $$invalidate(4, cells = removedCells.concat(cells));
+      }
+    }
+
+    var margin = tmpPoint - point;
+
+    if (margin === 40) {
+      $$invalidate(7, point += 40); //one line point
+    }
+
+    if (margin === 80) {
+      $$invalidate(7, point += 100); //two line point
+    }
+
+    if (margin === 120) {
+      $$invalidate(7, point += 300); //three line point
+    }
+
+    if (margin >= 160) {
+      $$invalidate(7, point += 400); //four or more line point
+    }
+  }
+
+  function reset() {
+    var _iterator = _createForOfIteratorHelper(cells),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var cell = _step.value;
+
+        for (var _i7 = 0, _Object$entries2 = Object.entries(cells[0].tetrominoType); _i7 < _Object$entries2.length; _i7++) {
+          var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i7], 2),
+              key = _Object$entries2$_i[0],
+              _ = _Object$entries2$_i[1];
+
+          if (cell.drawable === true) {
+            cell.tetrominoType[key] = false;
+          }
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+
+  var timeId = setInterval(function () {
+    reset();
+
+    if (currentTetromino.rotation[currentRotation].every(function (index) {
+      return currentPosition + index + width < width * height && cells[currentPosition + index + width].drawable === true;
+    })) {
+      $$invalidate(12, prevPosition = currentPosition);
+      $$invalidate(9, currentPosition += width);
+    }
+
+    freeze();
+  }, 700);
+
+  function gameover() {
+    var isOver = cells.some(function (cell, index) {
+      if (index < 2 * width && cell.drawable === false) {
+        return true;
+      }
+
+      return false;
+    });
+
+    if (isOver) {
+      dialog.show();
+      clearInterval(timeId);
+    }
+  }
+
+  window.onerror = function () {
+    location.reload();
+  };
+
+  function dialog_1_binding($$value) {
+    svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"][$$value ? "unshift" : "push"](function () {
+      dialog = $$value;
+      $$invalidate(5, dialog);
+    });
+  }
+
+  $$self.$$set = function ($$props) {
+    if ("point" in $$props) $$invalidate(7, point = $$props.point);
+    if ("width" in $$props) $$invalidate(0, width = $$props.width);
+    if ("height" in $$props) $$invalidate(1, height = $$props.height);
+    if ("cellWidth" in $$props) $$invalidate(2, cellWidth = $$props.cellWidth);
+    if ("cellHeight" in $$props) $$invalidate(3, cellHeight = $$props.cellHeight);
+    if ("currentTetromino" in $$props) $$invalidate(8, currentTetromino = $$props.currentTetromino);
+  };
+
+  $$self.$$.update = function () {
+    if ($$self.$$.dirty &
+    /*currentTetromino*/
+    256) {
+      $: {
+        if (currentTetromino) {
+          $$invalidate(9, currentPosition = 4);
+          $$invalidate(12, prevPosition = 4);
+        }
+      }
+    }
+
+    if ($$self.$$.dirty &
+    /*currentTetromino, prevRotation, cells, prevPosition, currentRotation, currentPosition*/
+    7952) {
+      $: {
+        currentTetromino.rotation[prevRotation].forEach(function (index) {
+          for (var _i8 = 0, _Object$entries3 = Object.entries(cells[prevPosition + index].tetrominoType); _i8 < _Object$entries3.length; _i8++) {
+            var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i8], 2),
+                key = _Object$entries3$_i[0],
+                _ = _Object$entries3$_i[1];
+
+            if (cells[prevPosition + index].drawable !== false) {
+              $$invalidate(4, cells[prevPosition + index].tetrominoType[key] = false, cells);
+            }
+          }
+        });
+        currentTetromino.rotation[currentRotation].forEach(function (index) {
+          if (cells[prevPosition + index].drawable !== false) {
+            $$invalidate(4, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
+          }
+        });
+      }
+    }
+  };
+
+  return [width, height, cellWidth, cellHeight, cells, dialog, handleKey, point, currentTetromino, currentPosition, currentRotation, prevRotation, prevPosition, dialog_1_binding];
+}
+
+var CellContainer = /*#__PURE__*/function (_SvelteComponent) {
+  _inherits(CellContainer, _SvelteComponent);
+
+  var _super = _createSuper(CellContainer);
+
+  function CellContainer(options) {
+    var _this;
+
+    _classCallCheck(this, CellContainer);
+
+    _this = _super.call(this);
+    if (!document.getElementById("svelte-146i7hn-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
+      point: 7,
+      width: 0,
+      height: 1,
+      cellWidth: 2,
+      cellHeight: 3,
+      currentTetromino: 8
+    });
+    return _this;
+  }
+
+  return CellContainer;
+}(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (CellContainer);
+
+/***/ }),
+
+/***/ "./resources/js/components/Dialog.svelte":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Dialog.svelte ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* resources\js\components\Dialog.svelte generated by Svelte v3.31.0 */
+
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-147pa45-style";
+  style.textContent = ".modal-wrapper.svelte-147pa45{width:500px;height:300px;position:absolute;left:50%;top:25%;transform:translate(-50%, -50%);z-index:99}.modal.svelte-147pa45{background-color:#131010;padding:1rem;margin:15% auto;width:100%;height:100%}.btn-flat-border.svelte-147pa45{display:inline-block;padding:0.3em 1em;text-decoration:none;color:#c02222;border:solid 2px#c02222;border-radius:3px;transition:.4s}.btn-flat-border.svelte-147pa45:hover{background:#c02222;color:white}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+} // (46:0) {#if shown}
+
+
+function create_if_block(ctx) {
+  var div2;
+  var div1;
+  var h1;
+  var t1;
+  var div0;
+  var a;
+  var mounted;
+  var dispose;
+  return {
+    c: function c() {
+      div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
+      h1.textContent = "Тоглоом дууслаа";
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      a = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("a");
+      a.textContent = "Оноог хадгалан дахин эхлүүлэх";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(h1, "color", "#c02222");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "href", "#");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "class", "btn-flat-border svelte-147pa45");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "modal svelte-147pa45");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "modal-wrapper svelte-147pa45");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div2, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, div1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, h1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, div0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, a);
+
+      if (!mounted) {
+        dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(a, "click", location.reload);
+        mounted = true;
+      }
+    },
+    p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div2);
+      mounted = false;
+      dispose();
+    }
+  };
+}
+
+function create_fragment(ctx) {
+  var if_block_anchor;
+  var if_block =
+  /*shown*/
+  ctx[0] && create_if_block(ctx);
+  return {
+    c: function c() {
+      if (if_block) if_block.c();
+      if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["empty"])();
+    },
+    m: function m(target, anchor) {
+      if (if_block) if_block.m(target, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, if_block_anchor, anchor);
+    },
+    p: function p(ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
+      if (
+      /*shown*/
+      ctx[0]) {
+        if (if_block) {
+          if_block.p(ctx, dirty);
+        } else {
+          if_block = create_if_block(ctx);
+          if_block.c();
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
+    },
+    i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    d: function d(detaching) {
+      if (if_block) if_block.d(detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(if_block_anchor);
+    }
+  };
+}
+
+function instance($$self, $$props, $$invalidate) {
+  var shown = false;
+
+  function show() {
+    $$invalidate(0, shown = true);
+  }
+
+  function hide() {
+    $$invalidate(0, shown = false);
+  }
+
+  return [shown, show, hide];
+}
+
+var Dialog = /*#__PURE__*/function (_SvelteComponent) {
+  _inherits(Dialog, _SvelteComponent);
+
+  var _super = _createSuper(Dialog);
+
+  function Dialog(options) {
+    var _this;
+
+    _classCallCheck(this, Dialog);
+
+    _this = _super.call(this);
+    if (!document.getElementById("svelte-147pa45-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
+      show: 1,
+      hide: 2
+    });
+    return _this;
+  }
+
+  _createClass(Dialog, [{
+    key: "show",
+    get: function get() {
+      return this.$$.ctx[1];
+    }
+  }, {
+    key: "hide",
+    get: function get() {
+      return this.$$.ctx[2];
+    }
+  }]);
+
+  return Dialog;
+}(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Dialog);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Play.svelte":
+/*!****************************************!*\
+  !*** ./resources/js/pages/Play.svelte ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _components_CellContainer_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CellContainer.svelte */ "./resources/js/components/CellContainer.svelte");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* resources\js\pages\Play.svelte generated by Svelte v3.31.0 */
+
+
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-1k8sasx-style";
+  style.textContent = "#Play.svelte-1k8sasx.svelte-1k8sasx{display:grid;grid-template-areas:\"header header header\"\n    \"sidebar-left-top main sidebar-right-top\"\n    \"sidebar-left-down main sidebar-right-down\"\n    \"footer footer footer\"}#sidebar-right-top.svelte-1k8sasx.svelte-1k8sasx{grid-area:sidebar-right-top;justify-self:start;text-align:center}#point.svelte-1k8sasx.svelte-1k8sasx{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#point.svelte-1k8sasx div.svelte-1k8sasx{margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#sidebar-left-top.svelte-1k8sasx.svelte-1k8sasx{grid-area:sidebar-left-top;justify-self:end;text-align:center}#record.svelte-1k8sasx.svelte-1k8sasx{border:10px solid #504545;height:150px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#record.svelte-1k8sasx div.svelte-1k8sasx{margin:0;position:absolute;width:100%;top:50%;left:50%;-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}#description.svelte-1k8sasx.svelte-1k8sasx{margin-top:20px;border:10px solid #504545;height:200px;width:200px;border-radius:9px;background-color:#2D2A2A;color:#ffffff;position:relative}#description.svelte-1k8sasx div.svelte-1k8sasx{margin:auto;width:100%}h1.svelte-1k8sasx.svelte-1k8sasx{grid-area:header;color:#ffffff}.reload.svelte-1k8sasx.svelte-1k8sasx{position:relative;width:25px;height:25px;border:2.5px solid;border-right-color:transparent;border-radius:100%;box-sizing:border-box;color:#94a4bd}.reload.svelte-1k8sasx.svelte-1k8sasx:before{position:absolute;top:4.5px;right:-2.5px;content:\"\";height:50%;border:5px solid transparent;border-top:7.5px solid;background:transparent;transform-origin:left top;transform:rotate(-40deg);box-sizing:border-box}#control.svelte-1k8sasx.svelte-1k8sasx{padding-top:20px;color:#ffffff}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+}
+
+function create_fragment(ctx) {
+  var div27;
+  var h1;
+  var t1;
+  var div11;
+  var t17;
+  var cellcontainer;
+  var updating_point;
+  var t18;
+  var div26;
+  var div13;
+  var div12;
+  var t19;
+  var t20;
+  var t21;
+  var div21;
+  var t33;
+  var div25;
+  var current;
+
+  function cellcontainer_point_binding(value) {
+    /*cellcontainer_point_binding*/
+    ctx[3].call(null, value);
+  }
+
+  var cellcontainer_props = {
+    currentTetromino:
+    /*nextTetromino*/
+    ctx[1],
+    width: width,
+    id: "tetris"
+  };
+
+  if (
+  /*point*/
+  ctx[0] !== void 0) {
+    cellcontainer_props.point =
+    /*point*/
+    ctx[0];
+  }
+
+  cellcontainer = new _components_CellContainer_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    props: cellcontainer_props
+  });
+  svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(function () {
+    return Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(cellcontainer, "point", cellcontainer_point_binding);
+  });
+  cellcontainer.$on("newTetromino",
+  /*newTetromino*/
+  ctx[2]);
+  return {
+    c: function c() {
+      div27 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
+      h1.textContent = "Тетрис";
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div11 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div11.innerHTML = "<div id=\"record\" class=\"svelte-1k8sasx\"><div class=\"svelte-1k8sasx\">\u041E\u0434\u043E\u043E\u0433\u0438\u0439\u043D \u0440\u0435\u043A\u043E\u0440\u0434: 200</div></div> \n\n    <div id=\"description\" class=\"svelte-1k8sasx\"><div class=\"svelte-1k8sasx\">\u0422\u043E\u0433\u043B\u043E\u043E\u043C\u044B\u043D \u0437\u0430\u0430\u0432\u0430\u0440</div> \n      <div class=\"svelte-1k8sasx\">\xA0</div> \n      <div class=\"svelte-1k8sasx\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Space: \u0428\u0443\u0443\u0434 \u0431\u0443\u0443\u043B\u0433\u0430\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Up: \u042D\u0440\u0433\u04AF\u04AF\u043B\u044D\u0445</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Left: \u0417\u04AF\u04AF\u043D</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Down: \u0414\u043E\u043E\u0448</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">Arrow Right: \u0411\u0430\u0440\u0443\u0443\u043D</div></div></div>";
+      t17 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(cellcontainer.$$.fragment);
+      t18 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div26 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div13 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div12 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      t19 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("Таны оноо: ");
+      t20 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(
+      /*point*/
+      ctx[0]);
+      t21 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div21 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div21.innerHTML = "<div class=\"svelte-1k8sasx\">\u041E\u043D\u043E\u043E\u043D\u044B \u0434\u04AF\u0440\u044D\u043C</div> \n      <div class=\"svelte-1k8sasx\">\xA0</div> \n      <div class=\"svelte-1k8sasx\"><div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">1 \u0448\u0443\u0433\u0430\u043C: 40 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">2 \u0448\u0443\u0433\u0430\u043C: 100 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">3 \u0448\u0443\u0433\u0430\u043C: 300 \u043E\u043D\u043E\u043E</div> \n        <div style=\"padding: 2px; text-align: left; padding-left: 20px\" class=\"svelte-1k8sasx\">4+ \u0448\u0443\u0433\u0430\u043C: 1200 \u043E\u043D\u043E\u043E</div></div>";
+      t33 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div25 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div25.innerHTML = "<div style=\"display: inline-block\"><div class=\"reload blue svelte-1k8sasx\" onclick=\"window.location.reload();\" style=\"float: left;\"></div> \n        <div style=\"float: left;\">\xA0\xA0\u0414\u0430\u0445\u0438\u043D \u044D\u0445\u043B\u04AF\u04AF\u043B\u044D\u0445</div></div>";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h1, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div11, "id", "sidebar-left-top");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div11, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div12, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "id", "point");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div13, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div21, "id", "description");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div21, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div25, "id", "control");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div25, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div26, "id", "sidebar-right-top");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div26, "class", "svelte-1k8sasx");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div27, "id", "Play");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div27, "class", "svelte-1k8sasx");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div27, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, h1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, div11);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, t17);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(cellcontainer, div27, null);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, t18);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div27, div26);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div26, div13);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div13, div12);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div12, t19);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div12, t20);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div26, t21);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div26, div21);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div26, t33);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div26, div25);
+      current = true;
+    },
+    p: function p(ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
+      var cellcontainer_changes = {};
+      if (dirty &
+      /*nextTetromino*/
+      2) cellcontainer_changes.currentTetromino =
+      /*nextTetromino*/
+      ctx[1];
+
+      if (!updating_point && dirty &
+      /*point*/
+      1) {
+        updating_point = true;
+        cellcontainer_changes.point =
+        /*point*/
+        ctx[0];
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(function () {
+          return updating_point = false;
+        });
+      }
+
+      cellcontainer.$set(cellcontainer_changes);
+      if (!current || dirty &
+      /*point*/
+      1) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t20,
+      /*point*/
+      ctx[0]);
+    },
+    i: function i(local) {
+      if (current) return;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(cellcontainer.$$.fragment, local);
+      current = true;
+    },
+    o: function o(local) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(cellcontainer.$$.fragment, local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div27);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(cellcontainer);
+    }
+  };
+}
+
+var width = 10;
+
+function instance($$self, $$props, $$invalidate) {
+  var point = 0;
+  var jTetromino = {
+    rotation: [[1, width + 1, width * 2 + 1, 2], [width, width + 1, width + 2, width * 2 + 2], [1, width + 1, width * 2 + 1, width * 2], [width, width * 2, width * 2 + 1, width * 2 + 2]],
+    "class": "jTetromino"
+  };
+  var lTetromino = {
+    rotation: [[0, 1, width * 1 + 1, width * 2 + 1], [width, width + 1, width + 2, width * 2], [1, width + 1, width * 2 + 1, width * 2 + 2], [width + 2, width * 2, width * 2 + 1, width * 2 + 2]],
+    "class": "lTetromino"
+  };
+  var sTetromino = {
+    rotation: [[0, width, width + 1, width * 2 + 1], [width + 1, width + 2, width * 2, width * 2 + 1], [0, width, width + 1, width * 2 + 1], [width + 1, width + 2, width * 2, width * 2 + 1]],
+    "class": "sTetromino"
+  };
+  var zTetromino = {
+    rotation: [[2, width + 2, width + 1, width * 2 + 1], [width + 1, width, width * 2 + 2, width * 2 + 1], [2, width + 2, width + 1, width * 2 + 1], [width + 1, width, width * 2 + 2, width * 2 + 1]],
+    "class": "zTetromino"
+  };
+  var tTetromino = {
+    rotation: [[1, width, width + 1, width + 2], [1, width + 1, width + 2, width * 2 + 1], [width, width + 1, width + 2, width * 2 + 1], [1, width, width + 1, width * 2 + 1]],
+    "class": "tTetromino"
+  };
+  var oTetromino = {
+    rotation: [[0, 1, width, width + 1], [0, 1, width, width + 1], [0, 1, width, width + 1], [0, 1, width, width + 1]],
+    "class": "oTetromino"
+  };
+  var iTetromino = {
+    rotation: [[1, width + 1, width * 2 + 1, width * 3 + 1], [width, width + 1, width + 2, width + 3], [1, width + 1, width * 2 + 1, width * 3 + 1], [width, width + 1, width + 2, width + 3]],
+    "class": "iTetromino"
+  };
+  var theTetrominoes = [jTetromino, lTetromino, sTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
+  var nextTetromino;
+
+  function newTetromino() {
+    var random = Math.floor(Math.random() * theTetrominoes.length);
+    $$invalidate(1, nextTetromino = [].concat(theTetrominoes)[random]);
+  }
+
+  newTetromino();
+
+  function cellcontainer_point_binding(value) {
+    point = value;
+    $$invalidate(0, point);
+  }
+
+  return [point, nextTetromino, newTetromino, cellcontainer_point_binding];
+}
+
+var Play = /*#__PURE__*/function (_SvelteComponent) {
+  _inherits(Play, _SvelteComponent);
+
+  var _super = _createSuper(Play);
+
+  function Play(options) {
+    var _this;
+
+    _classCallCheck(this, Play);
+
+    _this = _super.call(this);
+    if (!document.getElementById("svelte-1k8sasx-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
+    return _this;
+  }
+
+  return Play;
+}(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Play);
 
 /***/ }),
 

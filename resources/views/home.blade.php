@@ -20,12 +20,6 @@
         </div>
     </div>
     <div class="row justify-content-center">
-      <div style="padding-right: 400px">
-        <a href="/news">News</a>
-      </div>
-      <div>
-        <a href="/contact">Contacts</a>
-      </div>
     </div>
 </div>
 @endsection

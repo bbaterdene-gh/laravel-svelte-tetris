@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Point;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 class PointController extends Controller
 {
     public function __construct()
@@ -19,9 +18,14 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
+      $newPoint = new Point;
+
+      $user = auth()->user();
       $point = $request->point;
-      Log::info('message');
-      Log::info($point);
+      Point::create(
+        ['user_name' => $user->name, 'user_email' => $user->email, 'point' => $point]
+      );
+  
       return redirect('/');
     }
 }

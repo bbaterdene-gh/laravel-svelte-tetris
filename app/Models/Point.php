@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
 {
+    protected $fillable = ['user_name', 'user_email', 'point'];
     use HasFactory;
 }

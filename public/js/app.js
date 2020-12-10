@@ -40162,10 +40162,10 @@ function create_each_block(key_1, ctx) {
     props: {
       cellWidth:
       /*cellWidth*/
-      ctx[2],
+      ctx[3],
       cellHeight:
       /*cellHeight*/
-      ctx[3],
+      ctx[4],
       cellState:
       /*cell*/
       ctx[21]
@@ -40188,17 +40188,17 @@ function create_each_block(key_1, ctx) {
       var cell_changes = {};
       if (dirty &
       /*cellWidth*/
-      4) cell_changes.cellWidth =
+      8) cell_changes.cellWidth =
       /*cellWidth*/
-      ctx[2];
-      if (dirty &
-      /*cellHeight*/
-      8) cell_changes.cellHeight =
-      /*cellHeight*/
       ctx[3];
       if (dirty &
+      /*cellHeight*/
+      16) cell_changes.cellHeight =
+      /*cellHeight*/
+      ctx[4];
+      if (dirty &
       /*cells*/
-      16) cell_changes.cellState =
+      32) cell_changes.cellState =
       /*cell*/
       ctx[21];
       cell.$set(cell_changes);
@@ -40230,7 +40230,7 @@ function create_fragment(ctx) {
   var dispose;
   var each_value =
   /*cells*/
-  ctx[4];
+  ctx[5];
 
   var get_key = function get_key(ctx) {
     return (
@@ -40245,7 +40245,11 @@ function create_fragment(ctx) {
     each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
   }
 
-  var dialog_1_props = {};
+  var dialog_1_props = {
+    point:
+    /*point*/
+    ctx[0]
+  };
   dialog_1 = new _Dialog_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({
     props: dialog_1_props
   });
@@ -40265,14 +40269,14 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "CellContainer svelte-146i7hn");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
       /*cellWidth*/
-      ctx[2] *
+      ctx[3] *
       /*width*/
-      ctx[0] + "px");
+      ctx[1] + "px");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
       /*cellHeight*/
-      ctx[3] *
+      ctx[4] *
       /*height*/
-      ctx[1] + "px");
+      ctx[2] + "px");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "id", "tetris");
     },
     m: function m(target, anchor) {
@@ -40289,7 +40293,7 @@ function create_fragment(ctx) {
       if (!mounted) {
         dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(window_1, "keydown",
         /*handleKey*/
-        ctx[6]);
+        ctx[7]);
         mounted = true;
       }
     },
@@ -40299,10 +40303,10 @@ function create_fragment(ctx) {
 
       if (dirty &
       /*cellWidth, cellHeight, cells*/
-      28) {
+      56) {
         var _each_value =
         /*cells*/
-        ctx[4];
+        ctx[5];
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
         each_blocks = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["update_keyed_each"])(each_blocks, dirty, get_key, 1, ctx, _each_value, each_1_lookup, div, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["outro_and_destroy_block"], create_each_block, null, get_each_context);
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
@@ -40310,25 +40314,30 @@ function create_fragment(ctx) {
 
       if (!current || dirty &
       /*cellWidth, width*/
-      5) {
+      10) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "width",
         /*cellWidth*/
-        ctx[2] *
+        ctx[3] *
         /*width*/
-        ctx[0] + "px");
+        ctx[1] + "px");
       }
 
       if (!current || dirty &
       /*cellHeight, height*/
-      10) {
+      20) {
         Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(div, "height",
         /*cellHeight*/
-        ctx[3] *
+        ctx[4] *
         /*height*/
-        ctx[1] + "px");
+        ctx[2] + "px");
       }
 
       var dialog_1_changes = {};
+      if (dirty &
+      /*point*/
+      1) dialog_1_changes.point =
+      /*point*/
+      ctx[0];
 
       if (dirty &
       /*$$scope*/
@@ -40398,7 +40407,7 @@ function instance($$self, $$props, $$invalidate) {
   var prevPosition = currentPosition;
 
   _toConsumableArray(Array(height * width).keys()).forEach(function (element) {
-    $$invalidate(4, cells[element] = {
+    $$invalidate(5, cells[element] = {
       id: element,
       tetrominoType: {
         jTetromino: false,
@@ -40494,8 +40503,8 @@ function instance($$self, $$props, $$invalidate) {
       return cells[currentPosition + index + width].drawable === false || isBottom;
     })) {
       currentTetromino.rotation[currentRotation].forEach(function (index) {
-        $$invalidate(4, cells[currentPosition + index].drawable = false, cells);
-        $$invalidate(4, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
+        $$invalidate(5, cells[currentPosition + index].drawable = false, cells);
+        $$invalidate(5, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
       }); //start a new tetromino falling
 
       addPoint();
@@ -40520,37 +40529,37 @@ function instance($$self, $$props, $$invalidate) {
       })) {
         tmpPoint += 40;
         row.forEach(function (index) {
-          $$invalidate(4, cells[index].drawable = true, cells);
+          $$invalidate(5, cells[index].drawable = true, cells);
 
           for (var _i6 = 0, _Object$entries = Object.entries(cells[index].tetrominoType); _i6 < _Object$entries.length; _i6++) {
             var _Object$entries$_i = _slicedToArray(_Object$entries[_i6], 2),
                 key = _Object$entries$_i[0],
                 _ = _Object$entries$_i[1];
 
-            $$invalidate(4, cells[index].tetrominoType[key] = false, cells);
+            $$invalidate(5, cells[index].tetrominoType[key] = false, cells);
           }
         });
         var removedCells = cells.splice(i, width);
-        $$invalidate(4, cells = removedCells.concat(cells));
+        $$invalidate(5, cells = removedCells.concat(cells));
       }
     }
 
     var margin = tmpPoint - point;
 
     if (margin === 40) {
-      $$invalidate(7, point += 40); //one line point
+      $$invalidate(0, point += 40); //one line point
     }
 
     if (margin === 80) {
-      $$invalidate(7, point += 100); //two line point
+      $$invalidate(0, point += 100); //two line point
     }
 
     if (margin === 120) {
-      $$invalidate(7, point += 300); //three line point
+      $$invalidate(0, point += 300); //three line point
     }
 
     if (margin >= 160) {
-      $$invalidate(7, point += 400); //four or more line point
+      $$invalidate(0, point += 400); //four or more line point
     }
   }
 
@@ -40614,16 +40623,16 @@ function instance($$self, $$props, $$invalidate) {
   function dialog_1_binding($$value) {
     svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"][$$value ? "unshift" : "push"](function () {
       dialog = $$value;
-      $$invalidate(5, dialog);
+      $$invalidate(6, dialog);
     });
   }
 
   $$self.$$set = function ($$props) {
-    if ("point" in $$props) $$invalidate(7, point = $$props.point);
-    if ("width" in $$props) $$invalidate(0, width = $$props.width);
-    if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    if ("cellWidth" in $$props) $$invalidate(2, cellWidth = $$props.cellWidth);
-    if ("cellHeight" in $$props) $$invalidate(3, cellHeight = $$props.cellHeight);
+    if ("point" in $$props) $$invalidate(0, point = $$props.point);
+    if ("width" in $$props) $$invalidate(1, width = $$props.width);
+    if ("height" in $$props) $$invalidate(2, height = $$props.height);
+    if ("cellWidth" in $$props) $$invalidate(3, cellWidth = $$props.cellWidth);
+    if ("cellHeight" in $$props) $$invalidate(4, cellHeight = $$props.cellHeight);
     if ("currentTetromino" in $$props) $$invalidate(8, currentTetromino = $$props.currentTetromino);
   };
 
@@ -40641,7 +40650,7 @@ function instance($$self, $$props, $$invalidate) {
 
     if ($$self.$$.dirty &
     /*currentTetromino, prevRotation, cells, prevPosition, currentRotation, currentPosition*/
-    7952) {
+    7968) {
       $: {
         currentTetromino.rotation[prevRotation].forEach(function (index) {
           for (var _i8 = 0, _Object$entries3 = Object.entries(cells[prevPosition + index].tetrominoType); _i8 < _Object$entries3.length; _i8++) {
@@ -40650,20 +40659,20 @@ function instance($$self, $$props, $$invalidate) {
                 _ = _Object$entries3$_i[1];
 
             if (cells[prevPosition + index].drawable !== false) {
-              $$invalidate(4, cells[prevPosition + index].tetrominoType[key] = false, cells);
+              $$invalidate(5, cells[prevPosition + index].tetrominoType[key] = false, cells);
             }
           }
         });
         currentTetromino.rotation[currentRotation].forEach(function (index) {
           if (cells[prevPosition + index].drawable !== false) {
-            $$invalidate(4, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
+            $$invalidate(5, cells[currentPosition + index].tetrominoType[currentTetromino["class"]] = true, cells);
           }
         });
       }
     }
   };
 
-  return [width, height, cellWidth, cellHeight, cells, dialog, handleKey, point, currentTetromino, currentPosition, currentRotation, prevRotation, prevPosition, dialog_1_binding];
+  return [point, width, height, cellWidth, cellHeight, cells, dialog, handleKey, currentTetromino, currentPosition, currentRotation, prevRotation, prevPosition, dialog_1_binding];
 }
 
 var CellContainer = /*#__PURE__*/function (_SvelteComponent) {
@@ -40679,11 +40688,11 @@ var CellContainer = /*#__PURE__*/function (_SvelteComponent) {
     _this = _super.call(this);
     if (!document.getElementById("svelte-146i7hn-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
-      point: 7,
-      width: 0,
-      height: 1,
-      cellWidth: 2,
-      cellHeight: 3,
+      point: 0,
+      width: 1,
+      height: 2,
+      cellWidth: 3,
+      cellHeight: 4,
       currentTetromino: 8
     });
     return _this;
@@ -40749,7 +40758,7 @@ function add_css() {
   style.id = "svelte-147pa45-style";
   style.textContent = ".modal-wrapper.svelte-147pa45{width:500px;height:300px;position:absolute;left:50%;top:25%;transform:translate(-50%, -50%);z-index:99}.modal.svelte-147pa45{background-color:#131010;padding:1rem;margin:15% auto;width:100%;height:100%}.btn-flat-border.svelte-147pa45{display:inline-block;padding:0.3em 1em;text-decoration:none;color:#c02222;border:solid 2px#c02222;border-radius:3px;transition:.4s}.btn-flat-border.svelte-147pa45:hover{background:#c02222;color:white}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document_1.head, style);
-} // (49:0) {#if shown}
+} // (50:0) {#if shown}
 
 
 function create_if_block(ctx) {
@@ -40758,6 +40767,8 @@ function create_if_block(ctx) {
   var h1;
   var t1;
   var form;
+  var input;
+  var t2;
   var a;
   var mounted;
   var dispose;
@@ -40769,9 +40780,16 @@ function create_if_block(ctx) {
       h1.textContent = "Тоглоом дууслаа";
       t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       form = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("form");
+      input = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("input");
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       a = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("a");
       a.textContent = "Оноог хадгалан дахин эхлүүлэх";
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_style"])(h1, "color", "#c02222");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "type", "hidden");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "name", "point");
+      input.value =
+      /*point*/
+      ctx[0];
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "class", "btn-flat-border svelte-147pa45");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(form, "action", "/point");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(form, "method", "post");
@@ -40785,6 +40803,8 @@ function create_if_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, h1);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t1);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, form);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(form, input);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(form, t2);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(form, a);
 
       if (!mounted) {
@@ -40792,7 +40812,15 @@ function create_if_block(ctx) {
         mounted = true;
       }
     },
-    p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    p: function p(ctx, dirty) {
+      if (dirty &
+      /*point*/
+      1) {
+        input.value =
+        /*point*/
+        ctx[0];
+      }
+    },
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div1);
       mounted = false;
@@ -40805,7 +40833,7 @@ function create_fragment(ctx) {
   var if_block_anchor;
   var if_block =
   /*shown*/
-  ctx[0] && create_if_block(ctx);
+  ctx[1] && create_if_block(ctx);
   return {
     c: function c() {
       if (if_block) if_block.c();
@@ -40821,7 +40849,7 @@ function create_fragment(ctx) {
 
       if (
       /*shown*/
-      ctx[0]) {
+      ctx[1]) {
         if (if_block) {
           if_block.p(ctx, dirty);
         } else {
@@ -40849,16 +40877,22 @@ function save() {
 
 function instance($$self, $$props, $$invalidate) {
   var shown = false;
+  var _$$props$point = $$props.point,
+      point = _$$props$point === void 0 ? 0 : _$$props$point;
 
   function show() {
-    $$invalidate(0, shown = true);
+    $$invalidate(1, shown = true);
   }
 
   function hide() {
-    $$invalidate(0, shown = false);
+    $$invalidate(1, shown = false);
   }
 
-  return [shown, show, hide];
+  $$self.$$set = function ($$props) {
+    if ("point" in $$props) $$invalidate(0, point = $$props.point);
+  };
+
+  return [point, shown, show, hide];
 }
 
 var Dialog = /*#__PURE__*/function (_SvelteComponent) {
@@ -40874,8 +40908,9 @@ var Dialog = /*#__PURE__*/function (_SvelteComponent) {
     _this = _super.call(this);
     if (!document_1.getElementById("svelte-147pa45-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
-      show: 1,
-      hide: 2
+      point: 0,
+      show: 2,
+      hide: 3
     });
     return _this;
   }
@@ -40883,12 +40918,12 @@ var Dialog = /*#__PURE__*/function (_SvelteComponent) {
   _createClass(Dialog, [{
     key: "show",
     get: function get() {
-      return this.$$.ctx[1];
+      return this.$$.ctx[2];
     }
   }, {
     key: "hide",
     get: function get() {
-      return this.$$.ctx[2];
+      return this.$$.ctx[3];
     }
   }]);
 

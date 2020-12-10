@@ -19,7 +19,9 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
+      $point = $request->point;
       Log::info('message');
+      Log::info($point);
       return redirect('/');
     }
 }

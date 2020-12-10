@@ -1,5 +1,6 @@
 <script>
   let shown = false;
+  export let point = 0;
   export function show() {
     shown = true;
   }
@@ -51,6 +52,7 @@
     <div class="modal">
       <h1 style="color: #c02222;">Тоглоом дууслаа</h1>
       <form action="/point" method="post" id="saveAndReplay">
+        <input type="hidden" name="point" value={point}>
         <a class="btn-flat-border" on:click={save}>Оноог хадгалан дахин эхлүүлэх</a>
       </form>
     </div>

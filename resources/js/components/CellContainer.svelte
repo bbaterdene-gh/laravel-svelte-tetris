@@ -197,7 +197,7 @@
       <Cell cellWidth={cellWidth} cellHeight={cellHeight} cellState={cell}/>
   {/each}
 </div>
-<Dialog bind:this={dialog}>
+<Dialog bind:this={dialog} point={point}>
 </Dialog>
 <style>
   .CellContainer {

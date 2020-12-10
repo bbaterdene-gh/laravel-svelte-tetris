@@ -18,8 +18,6 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-      $newPoint = new Point;
-
       $user = auth()->user();
       $point = $request->point;
       Point::create(

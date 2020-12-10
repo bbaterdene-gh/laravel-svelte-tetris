@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e3adb0ace9eeed4c5610ed74967a616",
+    "content-hash": "fafcaf9e58826f1218a9adbc73338ff7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4594,6 +4594,63 @@
                 }
             ],
             "time": "2020-07-22T23:32:04+00:00"
+        },
+        {
+            "name": "wewowweb/laravel-svelte-preset",
+            "version": "v0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wewowweb/laravel-svelte-preset.git",
+                "reference": "6b9f784aafc3ceba4d7aa9c8ff13f222762bdd80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wewowweb/laravel-svelte-preset/zipball/6b9f784aafc3ceba4d7aa9c8ff13f222762bdd80",
+                "reference": "6b9f784aafc3ceba4d7aa9c8ff13f222762bdd80",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0",
+                "laravel/ui": "^1.2|^2.0|^3.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wewowweb\\LaravelSveltePreset\\LaravelSveltePresetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wewowweb\\LaravelSveltePreset\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gal Jakic",
+                    "email": "gal@wewowweb.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Svelte frontend preset for Laravel.",
+            "homepage": "https://github.com/wewowweb/laravel-svelte-preset",
+            "keywords": [
+                "We Wow Web",
+                "laravel",
+                "laravel-svelte-preset",
+                "svelte"
+            ],
+            "time": "2020-11-16T21:27:08+00:00"
         }
     ],
     "packages-dev": [

@@ -35,6 +35,21 @@
               background: #ffffff;
               color: #000000;
             }
+
+            .btn-flat-border-red {
+              display: inline-block;
+              padding: 0.3em 1em;
+              text-decoration: none;
+              color: #c02222;
+              border: solid 2px#c02222;
+              border-radius: 3px;
+              transition: .4s;
+            }
+
+            .btn-flat-border-red:hover {
+              background: #c02222;
+              color: white;
+            }
         </style>
     </head>
     <body class="antialiased">
@@ -49,8 +64,18 @@
                 @if (Route::has('register'))
                   <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline btn-flat-border">Бүртгүүлэх</a>
                 @endif
+                <div style="text-align: center;">
+                  <h1 class="btn-flat-border-red w-50 mx-auto">
+                    Тетрис
+                  </h1>
+                  <div></div>
+                  <h3 class="btn-flat-border-red w-50 mx-auto">
+                    Тоглохын тулд нэвтрэн орно уу.
+                  </h3>
+                </div>
             @endif
         </div>
       @endif
+
     </body>
 </html>

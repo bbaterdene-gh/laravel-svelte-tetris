@@ -16,9 +16,18 @@ use App\Models\Point;
 
 Route::get('/', function () {
     $user = auth()->user();
-    $userRecord = Point::where('user_email', $user->email)->max('point');
-    $allRecord = Point::all()->max('point');
-    return view('welcome', ["userRecord"=>$userRecord, "allRecord"=>$allRecord]);
+    if($user) {
+      $userRecord = Point::where('user_email', $user->email)->max('point');
+      $allRecord = Point::all()->max('point');
+      if ($userRecord==null){
+        $userRecord = 0;
+      }
+      if ($allRecord==null){
+        $allRecord = 0;
+      }
+      return view('welcome', ["userRecord"=>$userRecord, "allRecord"=>$allRecord]);
+    }
+    return view('welcome', ["userRecord"=>0, "allRecord"=>0]);
 });
 
 Auth::routes();

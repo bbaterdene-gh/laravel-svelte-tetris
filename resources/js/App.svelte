@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from "svelte";
+  import { onMount } from "svelte";
 
 	onMount(() => {
 	  console.log("the component has mounted");
@@ -13,7 +13,7 @@
 				<div class="card">
 					<div class="card-header">Example Component</div>
 					<div class="card-body">
-						I'm an example component.
+						I'm an example compt.
 					</div>
 				</div>
 			</div>

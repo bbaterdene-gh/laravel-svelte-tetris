@@ -19,6 +19,8 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
+    background-attachment: fixed;
+    background-color:#000000;
 	}
 
 	@media (min-width: 640px) {

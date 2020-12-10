@@ -39724,8 +39724,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function add_css() {
   var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
-  style.id = "svelte-7w6fh4-style";
-  style.textContent = "main.svelte-7w6fh4{text-align:center;padding:1em;max-width:240px;margin:0 auto}body{background-image:url('./img/tetris-bg-1.jpg');background-repeat:no-repeat;background-position:center;background-size:cover}@media(min-width: 640px){main.svelte-7w6fh4{max-width:none}}";
+  style.id = "svelte-1s5cwxz-style";
+  style.textContent = "main.svelte-1s5cwxz{text-align:center;padding:1em;max-width:240px;margin:0 auto}body{background-image:url('./img/tetris-bg-1.jpg');background-repeat:no-repeat;background-position:center;background-size:cover;background-attachment:fixed;background-color:#000000}@media(min-width: 640px){main.svelte-1s5cwxz{max-width:none}}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
 }
 
@@ -39738,7 +39738,7 @@ function create_fragment(ctx) {
     c: function c() {
       main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("main");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(play.$$.fragment);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "class", "svelte-7w6fh4");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "class", "svelte-1s5cwxz");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
@@ -39773,7 +39773,7 @@ var App = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, App);
 
     _this = _super.call(this);
-    if (!document.getElementById("svelte-7w6fh4-style")) add_css();
+    if (!document.getElementById("svelte-1s5cwxz-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, null, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
     return _this;
   }
